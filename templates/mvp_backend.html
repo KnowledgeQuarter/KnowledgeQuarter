@@ -8,41 +8,104 @@
 	<h1> MVP for the logger </h1>
 	<p> Input info here </p>
 	<form method="post">
-  		<label for="timein">Time in:</label>
-		<input type="text" id="timein" name="timein"><br><br>
-  		<label for="timeout">Time out:</label>
-  		<input type="text" id="timeout" name="timeout"><br><br>
-		<label for="ploc">Parking location:</label>
-		<input type="text" id="ploc" name="ploc"><br><br>
-  		<label for="delay">Delay :</label>
-  		<input type="text" id="delay" name="delay"><br><br>
-		<label for="inbound">Inbound or Outbound:</label>
-		<input type="text" id="inbound" name="inbound"><br><br>
-  		<label for="cname">Carrier Name:</label>
-  		<input type="text" id="cname" name="cname"><br><br>
-		<label for="vehic">Vehicle type:</label>
-		<input type="text" id="vehic" name="vehic"><br><br>
-  		<label for="vehicnum">Vehicle registration number:</label>
-  		<input type="text" id="vehicnum" name="vehicnum"><br><br>
-		<label for="fuel">Fuel type:</label>
-		<input type="text" id="fuel" name="fuel"><br><br>
-  		<label for="vehicori">Vehicle origin:</label>
-  		<input type="text" id="vehicori" name="vehicori"><br><br>
-		<label for="prev">Number of previous drop-off location:</label>
-		<input type="text" id="prev" name="prev"><br><br>
-  		<label for="foll">Number of following drop-off location:</label>
-  		<input type="text" id="foll" name="foll"><br><br>
-		<label for="personal">Personal delivert</label>
-		<input type="checkbox" id="personal" name="personal"><br><br>
-		<label for="dep">Department delivering to:</label>
-		<input type="text" id="dep" name="dep"><br><br>
-  		<label for="nsupp">Number of suppliers the pacjage comes frome:</label>
-  		<input type="text" id="nsupp" name="nsupp"><br><br>
-		<label for="goods">Type of goods:</label>
-		<input type="text" id="goods" name="goods"><br><br>
-  		<label for="size">Size of goods:</label>
-  		<input type="text" id="size" name="size"><br><br>
-  		<input type="submit" value="Submit">
+		<label for="company_name">Company name:</label>
+		<input type="text" id="company_name" name="company_name">
+		<br><br>
+  	<label for="time_in">Time in:</label>
+		<input type="datetime-local" id="time_in" name="time_in">
+		<br><br>
+  	<label for="time_out">Time out:</label>
+  	<input type="datetime-local" id="time_out" name="time_out">
+		<br><br>
+		<span>Parking location:</span>
+		<input type="radio" id="street" name="parking_location" value="street">
+		<label for="street">Off-street parking</label>
+		<input type="radio" id="restricted" name="parking_location" value="restricted">
+		<label for="restricted">Restricted parking location</label>
+		<br><br>
+		<span>Delay within vicinity of drop-off:</span>
+		<input type="radio" id="none" name="delay" value="none">
+		<label for="none">None</label>
+		<input type="radio" id="small" name="delay" value="small">
+		<label for="small">0-5 minutes</label>
+		<input type="radio" id="medium" name="delay" value="medium">
+		<label for="medium">5-10 minutes</label>
+		<input type="radio" id="large" name="delay" value="large">
+		<label for="large">10+ minutes</label>
+  	<br><br>
+		<span>Inbound or outbound:</span>
+		<input type="radio" id="inbound" name="bound" value="inbound">
+		<label for="inbound">Inbound</label>
+		<input type="radio" id="outbound" name="bound" value="outbound">
+		<label for="outbound">Outbound</label>
+		<br><br>
+  	<label for="carrier_name">Carrier Name:</label>
+  	<input type="text" id="carrier_name" name="carrier_name">
+		<br><br>
+		<span>Vehicle type:</span>
+		<input type="radio" id="pedestrian" name="vehicle_type" value="pedestrian">
+		<label for="pedestrian">Pedestrian</label>
+		<input type="radio" id="bicycle" name="vehicle_type" value="bicycle">
+		<label for="bicycle">Bicycle</label>
+		<input type="radio" id="motorbike" name="vehicle_type" value="motorbike">
+		<label for="motorbike">Motorbike</label>
+		<input type="radio" id="car" name="vehicle_type" value="car">
+		<label for="car">Car</label>
+		<input type="radio" id="van" name="vehicle_type" value="van">
+		<label for="van">Van</label>
+		<input type="radio" id="lorry" name="vehicle_type" value="lorry">
+		<label for="lorry">Lorry</label>
+		<br><br>
+  	<label for="vehicle_registration_number">Vehicle registration number:</label>
+  	<input type="text" id="vehicle_registration_number" name="vehicle_registration_number">
+		<br><br>
+		<span>Fuel type:</span>
+		<input type="radio" id="petrol" name="fuel" value="petrol">
+		<label for="petrol">Petrol</label>
+		<input type="radio" id="diesel" name="fuel" value="diesel">
+		<label for="diesel">Diesel</label>
+		<input type="radio" id="electric" name="fuel" value="electric">
+		<label for="electric">Electric</label>
+		<input type="radio" id="hybrid" name="fuel" value="hybrid">
+		<label for="hybrid">Hybrid</label>
+		<br><br>
+  	<label for="vehicle_origin">Vehicle origin:</label>
+  	<input type="text" id="vehicle_origin" name="vehicle_origin">
+		<br><br>
+		<label for="previous_locations">Number of previous drop-off location:</label>
+		<input type="number" id="previous_locations" name="previous_locations" min="0">
+		<br><br>
+		<label for="following_locations">Number of previous drop-off location:</label>
+		<input type="number" id="following_locations" name="following_locations" min="0">
+  	<br><br>
+		<input type="checkbox" id="personal_delivery" name="personal_delivery">
+		<label for="personal_delivery">Personal delivery</label>
+		<br><br>
+		<label for="department">Department delivering to:</label>
+		<input type="text" id="department" name="department">
+		<br><br>
+  	<label for="number_suppliers">Number of suppliers the packages come frome:</label>
+  	<input type="number" id="number_suppliers" name="number_suppliers" min="0">
+		<br><br>
+		<span>Type of goods:</span>
+		<input type="radio" id="medical" name="type" value="medical">
+		<label for="medical">Medical</label>
+		<input type="radio" id="office" name="type" value="office">
+		<label for="office">Office</label>
+		<input type="radio" id="catering" name="type" value="catering">
+		<label for="catering">Catering</label>
+		<br><br>
+		<span>Size of goods:</span>
+		<input type="radio" id="box" name="size" value="box">
+		<label for="box">Box</label>
+		<input type="radio" id="letter" name="size" value="letter">
+		<label for="letter">Letter</label>
+		<input type="radio" id="package" name="size" value="package">
+		<label for="package">Package</label>
+		<input type="radio" id="pallet" name="size" value="pallet">
+		<label for="pallet">Pallet</label>
+		<br><br>
+  	<input type="submit" value="Submit">
 	</form>
 </body>
 </html>

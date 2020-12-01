@@ -5,7 +5,7 @@ Created on Mon Nov 30 17:30:15 2020
 @author: Kirsch
 """
 
-#Import the necessary libraries 
+#Import the necessary libraries
 from flask import Flask, render_template, g, redirect, url_for, request, send_file
 import mysql.connector
 from mysql.connector.constants import ClientFlag
@@ -24,19 +24,19 @@ def index():
 #Function recuperating the info from the form and adding it to the database
 @app.route("/", methods=['GET', 'POST'])
 def redirection():
-    
+
     #Get the data from the form
     data = request.form
     print(data)
-    
+
     #Get the keys from the form - they will correspond to the columns in the database
     key = str(list(data.keys())).replace("[","(").replace("]",")").replace("'","")
     print(key)
-    
+
     #Get the logging information
     value = str(list(data.values())).replace("[","(").replace("]",")")
     print(value)
-   
+
     #Configure the information to establish the connection to the database
     config = {
         'user': 'root',
@@ -47,23 +47,23 @@ def redirection():
         'ssl_cert': 'ssl/client-cert.pem',
         'ssl_key': 'ssl/client-key.pem'
     }
-    
-    
 
-    
+
+
+
     config['database'] = 'testdb'  # add new database to config dict
-    
+
     #Establish our connection
     cnxn = mysql.connector.connect(**config)
     cursor = cnxn.cursor()
-    
-    #Create the SQL query    
-    sql = "INSERT INTO tke_db "+ key + " VALUES "+ value
-    
-    #Execute the SQL query 
+
+    #Create the SQL query
+    sql = "INSERT INTO delivery_logger " + key + " VALUES " + value
+
+    #Execute the SQL query
     cursor.execute(sql)
-    cnxn.commit() 
-    
+    cnxn.commit()
+
     #Redirect the right html page
     return redirect(url_for(".thank"))
 
@@ -81,5 +81,3 @@ def redirection_index():
 if __name__ == "__main__":
     # execute only if run as a script
     app.run()
-
-
