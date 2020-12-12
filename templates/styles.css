@@ -1,0 +1,112 @@
+.btn-primary {
+  color:#fff;
+  background-color:#DF007E;
+  border-color:#DF007E
+}
+
+.btn-primary:hover {
+  color:#fff;
+  background-color:#D00076;
+  border-color:#C0006D
+}
+
+.btn-check:focus+.btn-primary,.btn-primary:focus{
+  color:#fff;
+  background-color:#D00076;
+  border-color:#C0006D;
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
+}
+
+.btn-check:active+.btn-primary,.btn-check:checked+.btn-primary,.btn-primary.active,.btn-primary:active,.show>.btn-primary.dropdown-toggle{
+  color:#fff;
+  background-color:#C0006D;
+  border-color:#B00064
+}
+
+.btn-check:active+.btn-primary:focus,.btn-check:checked+.btn-primary:focus,.btn-primary.active:focus,.btn-primary:active:focus,.show>.btn-primary.dropdown-toggle:focus {
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
+}
+
+.btn-check:focus+.btn,.btn:focus {
+  outline:0;
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.25)
+}
+
+.btn-outline-primary {
+  color:#DF007E;
+  border-color:#DF007E
+}
+
+.btn-outline-primary:hover {
+  color:#fff;
+  background-color:#DF007E;
+  border-color:#DF007E
+}
+
+.btn-check:focus+.btn-outline-primary,.btn-outline-primary:focus{
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
+}
+
+.btn-check:active+.btn-outline-primary,.btn-check:checked+.btn-outline-primary,.btn-outline-primary.active,.btn-outline-primary.dropdown-toggle.show,.btn-outline-primary:active{
+  color:#fff;
+  background-color:#DF007E;
+  border-color:#DF007E
+}
+
+.btn-check:active+.btn-outline-primary:focus,.btn-check:checked+.btn-outline-primary:focus,.btn-outline-primary.active:focus,.btn-outline-primary.dropdown-toggle.show:focus,.btn-outline-primary:active:focus{
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
+}
+
+.btn-outline-primary.disabled,.btn-outline-primary:disabled{
+  color:#DF007E;
+  background-color:transparent
+}
+
+.form-check-input:focus{
+  border-color:#FF33A7;
+  outline:0;
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.25)
+}
+
+.form-check-input:checked{
+  background-color:#DF007E;
+  border-color:#DF007E
+}
+
+.form-check-input:checked[type=checkbox]{
+  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e")
+}
+
+.form-control:focus {
+  color:#212529;
+  background-color:#fff;
+  border-color:#FF33A7;
+  outline:0;
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.25)
+}
+
+.form-select:focus {
+  border-color:#FF33A7;
+  outline:0;
+  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.25)
+}
+
+.btn-lg {
+  width: 100%
+}
+
+.form {
+  background: #EDEDED;
+  border-radius: 10px;
+  padding: 20px 0;
+}
+
+.bg-primary{
+  background-color:#DF007E !important
+}
+
+.title {
+  color: white;
+  margin: 20px 20px;
+  font-size: 20px;
+}
