@@ -1,28 +1,29 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Nov 30 17:30:15 2020
+Created on Fri Dec 11 17:09:11 2020
 
 @author: Kirsch
 """
 
-#Import the necessary libraries
 from flask import Flask, render_template, g, redirect, url_for, request, send_file
-import mysql.connector
-from mysql.connector.constants import ClientFlag
+import pymysql
+
+
 
 
 #Create the web application
-app = Flask(__name__)
+application = Flask(__name__)
 
 
 #Initialize the web app first page
-@app.route("/")
+@application.route("/")
 def index():
+
     return render_template("mvp_backend.html")
 
 
 #Function recuperating the info from the form and adding it to the database
-@app.route("/", methods=['GET', 'POST'])
+@application.route("/", methods=['GET', 'POST'])
 def redirection():
 
     #Get the data from the form
@@ -37,47 +38,36 @@ def redirection():
     value = str(list(data.values())).replace("[","(").replace("]",")")
     print(value)
 
-    #Configure the information to establish the connection to the database
-    config = {
-        'user': 'root',
-        'password': 'Piloupistache1',
-        'host': '35.187.22.101',
-        'client_flags': [ClientFlag.SSL],
-        'ssl_ca': 'ssl/server-ca.pem',
-        'ssl_cert': 'ssl/client-cert.pem',
-        'ssl_key': 'ssl/client-key.pem'
-    }
-
-
-
-
-    config['database'] = 'testdb'  # add new database to config dict
-
-    #Establish our connection
-    cnxn = mysql.connector.connect(**config)
-    cursor = cnxn.cursor()
-
-    #Create the SQL query
+    db = pymysql.connect("database-2.cotwcdzhuuco.us-east-2.rds.amazonaws.com", 'admin', 'Piloupistache1', port = 3306)
+    cursor = db.cursor()
+    cursor.connection.commit()
+    sql = '''use tketest'''
+    cursor.execute(sql)
+    
+    
     sql = "INSERT INTO delivery_logger " + key + " VALUES " + value
 
-    #Execute the SQL query
     cursor.execute(sql)
-    cnxn.commit()
+    db.commit()
+    db.close()
 
     #Redirect the right html page
     return redirect(url_for(".thank"))
 
 
 #Load the thank you html page
-@app.route("/thanks")
+@application.route("/thanks")
 def thank():
     return render_template("thankslog.html")
 
 #Button to go back to logging page
-@app.route("/thanks", methods=['GET', 'POST'])
+@application.route("/thanks", methods=['GET', 'POST'])
 def redirection_index():
     return redirect(url_for(".index"))
 
+
+
 if __name__ == "__main__":
     # execute only if run as a script
-    app.run()
+    application.run()
+
