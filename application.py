@@ -43,8 +43,8 @@ def redirection():
     cursor.connection.commit()
     sql = '''use tketest'''
     cursor.execute(sql)
-    
-    
+
+
     sql = "INSERT INTO delivery_logger " + key + " VALUES " + value
 
     cursor.execute(sql)
@@ -70,4 +70,3 @@ def redirection_index():
 if __name__ == "__main__":
     # execute only if run as a script
     application.run()
-
