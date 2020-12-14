@@ -24,7 +24,7 @@ def index():
 
 #Function recuperating the info from the form and adding it to the database
 @application.route("/", methods=['GET', 'POST'])
-def redirection():
+def form():
 
     #Get the data from the form
     data = request.form
@@ -52,7 +52,7 @@ def redirection():
     db.close()
 
     #Redirect the right html page
-    return redirect(url_for(".thank"))
+    return redirect(url_for("form"))
 
 
 #Load the thank you html page
@@ -69,4 +69,4 @@ def redirection_index():
 
 if __name__ == "__main__":
     # execute only if run as a script
-    application.run()
+    application.run(debug=True)
