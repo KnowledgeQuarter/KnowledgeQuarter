@@ -38,10 +38,10 @@ def form():
     value = str(list(data.values())).replace("[","(").replace("]",")")
     print(value)
 
-    db = pymysql.connect("database-2.cotwcdzhuuco.us-east-2.rds.amazonaws.com", 'admin', 'Piloupistache1', port = 3306)
+    db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
     cursor = db.cursor()
     cursor.connection.commit()
-    sql = '''use tketest'''
+    sql = '''use kq_contracts_and_logger'''
     cursor.execute(sql)
 
 
@@ -69,4 +69,4 @@ def redirection_index():
 
 if __name__ == "__main__":
     # execute only if run as a script
-    application.run(debug=True)
+    application.run()
