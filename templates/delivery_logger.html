@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='assets/faviconkq.ico') }}">
+	<script type="text/javascript">
+		function now(in_out) {
+			var now = new Date();
+			document.getElementById(in_out).value = now.toISOString().slice(0, -8);
+		}
+	</script>
+	<title>Knowledge Quarter • Delivery Logger</title>
+</head>
+<body>
+	<div class="container-fluid bg-primary mb-sm-4 d-flex align-items-center justify-content-between">
+		<div>
+			<img src="{{url_for('static', filename='assets/kq-logo.png')}}" height="60">
+			<span class="title">Delivery Logger</span>
+		</div>
+		<div>
+			<a href="{{ url_for('settings') }}" style="text-decoration: none">
+				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-sliders" viewBox="0 0 16 16">
+  				<path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
+				</svg>
+			</a>
+			<a href="{{ url_for('index') }}" style="margin-left: 15px; text-decoration: none">
+				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+		  		<path fill-rule="evenodd" d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2v13h1V2.5a.5.5 0 0 0-.5-.5H11zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+				</svg>
+			</a>
+		</div>
+	</div>
+	<div class="container">
+		<form method="post" action="{{url_for('form')}}" id="form">
+			<div class="row gx-5 box">
+				<div class="col-lg">
+					<div class="row">
+		  			<div class="col mb-3">
+							<label for="time_in" class="form-label">Time in</label>
+							<div class="input-group">
+								<input type="datetime-local" class="form-control" id="time_in" name="time_in" required>
+								<button class="btn btn-primary" type="button" id="now_in" onclick="now('time_in')">Now</button>
+							</div>
+		  			</div>
+						<div class="col mb-3">
+							<label for="time_out" class="form-label">Time out</label>
+							<div class="input-group">
+								<input type="datetime-local" class="form-control" id="time_out" name="time_out" required>
+								<button class="btn btn-primary" type="button" id="now_out" onclick="now('time_out')">Now</button>
+							</div>
+		  			</div>
+					</div>
+					<div class="mb-3">
+						<label for="delivery_location" class="form-label">Delivery location</label>
+						<select class="form-select" name="delivery_location" id="delivery_location">
+							<option selected disabled>Select a location</option>
+			  			<option value="1">Loading bay 1</option>
+			  			<option value="2">Loading bay 2</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="delay" class="form-label">Delay within vicinity of drop-off</label>
+						<br>
+						<input type="radio" class="btn-check" name="delay" id="none" value="none" checked>
+						<label class="btn btn-outline-primary" for="none">None</label>
+						<input type="radio" class="btn-check" name="delay" id="small" value="small">
+						<label class="btn btn-outline-primary" for="small">0-5 minutes</label>
+						<input type="radio" class="btn-check" name="delay" id="medium" value="medium">
+						<label class="btn btn-outline-primary" for="medium">5-10 minutes</label>
+						<input type="radio" class="btn-check" name="delay" id="large" value="large">
+						<label class="btn btn-outline-primary" for="large">10+ minutes</label>
+					</div>
+					<div class="mb-3">
+						<label for="bound" class="form-label">Inbound or outbound</label>
+						<br>
+						<input type="radio" class="btn-check" name="bound" id="inbound" value = "inbound" checked>
+						<label class="btn btn-outline-primary" for="inbound">Inbound</label>
+						<input type="radio" class="btn-check" name="bound" id="outbound" value = "Outbound">
+						<label class="btn btn-outline-primary" for="outbound">Outbound</label>
+						<input type="radio" class="btn-check" name="bound" id="both" value = "Both">
+						<label class="btn btn-outline-primary" for="both">Both</label>
+					</div>
+					<div class="mb-3">
+						<label for="carrier" class="form-label">Carrier name</label>
+						<input class="form-control" list="carrierOptions" name="carrier" id="carrier" placeholder="Type to search...">
+						<datalist id="carrierOptions">
+  						<option value="UPS">
+							<option value="Fed Ex">
+							<option value="Yodel">
+  						<option value="DPD">
+  						<option value="Royal Mail">
+						</datalist>
+					</div>
+					<div class="mb-3">
+						<label for="bound" class="form-label">Vehicle type</label>
+						<br>
+						<input type="radio" class="btn-check" name="vehicle_type" id="lorry" value="lorry" checked>
+						<label class="btn btn-outline-primary" for="lorry">Lorry</label>
+						<input type="radio" class="btn-check" name="vehicle_type" id="van" value="van">
+						<label class="btn btn-outline-primary" for="van">Van</label>
+						<input type="radio" class="btn-check" name="vehicle_type" id="car" value="car">
+						<label class="btn btn-outline-primary" for="car">Car</label>
+						<input type="radio" class="btn-check" name="vehicle_type" id="motorbike" value="motorbike">
+						<label class="btn btn-outline-primary" for="motorbike">Motorbike</label>
+						<input type="radio" class="btn-check" name="vehicle_type" id="bicycle" value="bicycle">
+						<label class="btn btn-outline-primary" for="bicycle">Bicycle</label>
+						<input type="radio" class="btn-check" name="vehicle_type" id="pedestrian" value="pedestrian">
+						<label class="btn btn-outline-primary" for="pedestrian">Pedestrian</label>
+					</div>
+				</div>
+				<div class="col-lg">
+					<div class="mb-3">
+						<label for="vehicle_registration_number" class="form-label">Vehicle registration number</label>
+				  	<input type="text" id="vehicle_registration_number" class="form-control" name="vehicle_registration_number">
+					</div>
+					<div class="mb-3">
+						<input class="form-check-input" type="checkbox" id="personal_delivery" name="personal_delivery" value="personal_delivery">
+		  			<label class="form-check-label" for="personal_delivery">Personal delivery</label>
+					</div>
+					<div class="mb-3">
+						<label for="department" class="form-label">Department delivering to</label>
+						<select class="form-select" name="department" id="department">
+							<option selected disabled>Select a department</option>
+			  			<option value="IT">IT department</option>
+			  			<option value="sales">Sales</option>
+							<option value="research">Research</option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="number_packages" class="form-label">Number of packages</label>
+						<input type="number" id="number_packages" min="0" class="form-control" name="number_packages">
+					</div>
+					<div class="mb-3">
+						<label for="type" class="form-label">Type of goods</label>
+						<input class="form-control" list="typeOptions" name="type" id="type" placeholder="Type to search...">
+						<datalist id="typeOptions">
+  						<option value="Office supplices">
+							<option value="Cleaning supplies">
+							<option value="Catering">
+  						<option value="IT supplies">
+							<option value="Post / Courier">
+  						<option value="Medical supplies">
+						</datalist>
+					</div>
+					<div class="mb-3">
+						<label for="size" class="form-label">Size of goods</label>
+						<br>
+						<input type="radio" class="btn-check" name="size" id="pallet" value="pallet" checked>
+						<label class="btn btn-outline-primary" for="pallet">Pallet</label>
+						<input type="radio" class="btn-check" name="size" id="crate" value="crate">
+						<label class="btn btn-outline-primary" for="crate">Crate</label>
+						<input type="radio" class="btn-check" name="size" id="box" value="box">
+						<label class="btn btn-outline-primary" for="box">Box</label>
+						<input type="radio" class="btn-check" name="size" id="package" value="package">
+						<label class="btn btn-outline-primary" for="package">Package</label>
+						<input type="radio" class="btn-check" name="size" id="letter" value="letter">
+						<label class="btn btn-outline-primary" for="letter">Letter</label>
+					</div>
+					<div class="row">
+						<div class="col-lg mb-3">
+							<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+						</div>
+						<div class="col-lg mb-3">
+							<button type="reset" class="btn btn-outline-secondary btn-lg">Reset</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="modal fade" id="thanks" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+	    <div class="modal-content">
+	      <div class="modal-body d-flex justify-content-between">
+					<div>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#DF007E" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+		  				<path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+						</svg>
+	        <span style="margin-left: 10px" id="modalLabel">Submission successful!</span>
+					</div>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	<script>
+	var modal = new bootstrap.Modal(document.getElementById('thanks'), {
+  	keyboard: false
+	})
+	document.getElementById("form").addEventListener("submit", (e) => {
+		modal.show();
+	})
+	</script>
+</body>
+</html>
