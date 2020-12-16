@@ -95,7 +95,7 @@
   width: 100%
 }
 
-.form {
+.box {
   background: #EDEDED;
   border-radius: 10px;
   padding: 20px 0;
@@ -114,4 +114,8 @@
 .submission-message {
   font-weight: bold;
   margin-left: 20px;
+}
+
+th, td {
+  white-space: nowrap;
 }
