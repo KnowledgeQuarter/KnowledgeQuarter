@@ -42,13 +42,13 @@ def get_csv():
     cursor.connection.commit()
     sql = '''use kq_contracts_and_logger'''
     cursor.execute(sql)
-    
+
     sql = '''select * from delivery_logger'''
     cursor.execute(sql)
     data = cursor.fetchall()
-    
-    df = pd.DataFrame(list(data), columns = ['time_in','time_out', 
-                                          'delivery_location', 'delay', 'bound', 
+
+    df = pd.DataFrame(list(data), columns = ['time_in','time_out',
+                                          'delivery_location', 'delay', 'bound',
                                           'carrier', 'vehicle_type',
                                           'vehicle_registration_number',
                                           'personal_delivery',
@@ -56,9 +56,9 @@ def get_csv():
                                           'number_packages',
                                           'type',
                                           'size'])
-    
+
     df.to_csv('outputs/your_data.csv', sep = ',' )
-    
+
 
     return send_file('outputs/your_data.csv',
         mimetype='text/csv',
