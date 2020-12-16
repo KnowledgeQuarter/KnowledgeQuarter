@@ -5,27 +5,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   	<link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
   	<link rel="shortcut icon" href="{{ url_for('static', filename='assets/faviconkq.ico') }}">
-    <title></title>
+    <title>Knowledge Quarter • Login</title>
   </head>
   <body>
-    <div class="container">
-    <form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="container-fluid bg-primary mb-sm-4 d-flex align-items-center justify-content-between">
+  		<div>
+  			<img src="{{url_for('static', filename='assets/kq-logo.png')}}" height="60">
+  			<span class="title">Delivery Logger</span>
+  		</div>
+  	</div>
+    <div class="container col-md-6">
+      <form>
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" id="username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password">
+        </div>
+        <a href="{{ url_for('delivery_logger') }}" class="btn btn-primary" style="width:100%">Submit</a>
 </form>
-<a href="{{ url_for('delivery_logger') }}"></a>
 </div>
   </body>
 </html>
