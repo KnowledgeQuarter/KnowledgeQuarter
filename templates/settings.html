@@ -215,10 +215,29 @@
                 </tr>
               </tbody>
             </table>
-	    <form method="post">
-	        <input type="submit" value="Download your data" >
-	    </form>
           </div>
+          <div class="mb-3">
+            <p style="color: #6c757d">Use the controls below to selectively download and review your data.</p>
+          </div>
+          <form class="row row-cols-md-auto g-3 align-items-center">
+            <div class="col-12">
+              <label class="visually-hidden" for="from_date">From</label>
+              <div class="input-group">
+                <div class="input-group-text">From</div>
+                <input type="date" class="form-control" id="from_date" name="from_date" required>
+              </div>
+            </div>
+            <div class="col-12">
+              <label class="visually-hidden" for="to_date">To</label>
+              <div class="input-group">
+                <div class="input-group-text">To</div>
+                <input type="date" class="form-control" id="to_date" name="to_date" required>
+              </div>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary" style="width:100%">Download</button>
+            </div>
+          </form>
         </div>
       </div>
       <div class="box">
