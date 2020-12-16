@@ -1,0 +1,12 @@
+,time_in,time_out,delivery_location,delay,bound,carrier,vehicle_type,vehicle_registration_number,personal_delivery,department,number_packages,type,size
+0,2020-12-15T14:29,2020-12-15T14:29,2,none,on,DPD,lorry,,on,sales,,Cleaning supplies,package
+1,2020-12-15T14:32,2020-12-15T14:32,1,large,on,Fed Ex,pedestrian,,on,sales,,Office supplices,letter
+2,2020-12-15T15:03,2020-12-15T15:03,1,small,on,,lorry,,,,,,pallet
+3,2020-12-15T15:03,2020-12-15T15:03,,none,on,,lorry,,,,,,pallet
+4,2020-12-15T15:03,2020-12-15T15:03,,none,on,,lorry,,,,,,pallet
+5,2020-12-15T15:05,2020-12-15T15:05,,medium,on,,lorry,,,,,,pallet
+6,2020-12-15T15:13,2020-12-15T15:14,1,medium,Both,,lorry,,,,,,pallet
+7,2020-12-15T15:17,2020-12-15T15:17,2,medium,Outbound,,lorry,,,,,,pallet
+8,2020-12-15T15:18,2020-12-15T15:18,1,none,Both,,lorry,,,,,,pallet
+9,2020-12-15T15:23,2020-12-15T16:00,1,large,inbound,Royal Mail,van,,,sales,,Office supplices,box
+10,2020-12-16T11:04,2020-12-16T11:04,1,medium,Both,Yodel,bicycle,99,,research,5,Office supplices,letter

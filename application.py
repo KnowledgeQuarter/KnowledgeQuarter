@@ -7,6 +7,7 @@ Created on Fri Dec 11 17:09:11 2020
 
 from flask import Flask, render_template, g, redirect, url_for, request, send_file
 import pymysql
+import pandas as pd
 
 
 
@@ -25,10 +26,46 @@ def index():
 def delivery_logger():
     return render_template("delivery_logger.html")
 
+
 # Load the template for the settings page
 @application.route("/settings")
 def settings():
     return render_template("settings.html")
+
+
+# Load the template for the settings page
+@application.route("/settings", methods=['GET', 'POST'])
+def get_csv():
+
+    db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
+    cursor = db.cursor()
+    cursor.connection.commit()
+    sql = '''use kq_contracts_and_logger'''
+    cursor.execute(sql)
+    
+    sql = '''select * from delivery_logger'''
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    
+    df = pd.DataFrame(list(data), columns = ['time_in','time_out', 
+                                          'delivery_location', 'delay', 'bound', 
+                                          'carrier', 'vehicle_type',
+                                          'vehicle_registration_number',
+                                          'personal_delivery',
+                                          'department',
+                                          'number_packages',
+                                          'type',
+                                          'size'])
+    
+    df.to_csv('outputs/your_data.csv', sep = ',' )
+    
+
+    return send_file('outputs/your_data.csv',
+        mimetype='text/csv',
+        attachment_filename='your_data.csv',
+        as_attachment=True)
+
+
 
 # Function to fetch the info from the form and add it to the database
 @application.route("/", methods=['GET', 'POST'])
@@ -66,4 +103,4 @@ def form():
 
 if __name__ == "__main__":
     # Execute only if run as a script
-    application.run(debug=True)
+    application.run()
