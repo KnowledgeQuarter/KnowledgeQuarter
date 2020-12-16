@@ -11,30 +11,38 @@ import pymysql
 
 
 
-#Create the web application
+# Create the web application
 application = Flask(__name__)
 
 
-#Initialize the web app first page
+# Initialize the web app's first page
 @application.route("/")
 def index():
+    return render_template("index.html")
 
-    return render_template("mvp_backend.html")
+# Load the template for the delivery logger
+@application.route("/delivery_logger")
+def delivery_logger():
+    return render_template("delivery_logger.html")
 
+# Load the template for the settings page
+@application.route("/settings")
+def settings():
+    return render_template("settings.html")
 
-#Function recuperating the info from the form and adding it to the database
+# Function to fetch the info from the form and add it to the database
 @application.route("/", methods=['GET', 'POST'])
 def form():
 
-    #Get the data from the form
+    # Get the data from the form
     data = request.form
     print(data)
 
-    #Get the keys from the form - they will correspond to the columns in the database
+    # Get the keys from the form - they will correspond to the columns in the database
     key = str(list(data.keys())).replace("[","(").replace("]",")").replace("'","")
     print(key)
 
-    #Get the logging information
+    # Get the logging information
     value = str(list(data.values())).replace("[","(").replace("]",")")
     print(value)
 
@@ -51,22 +59,11 @@ def form():
     db.commit()
     db.close()
 
-    #Redirect the right html page
+    # Redirect to the same html page
     return redirect(url_for("form"))
-
-
-#Load the thank you html page
-@application.route("/thanks")
-def thank():
-    return render_template("thankslog.html")
-
-#Button to go back to logging page
-@application.route("/thanks", methods=['GET', 'POST'])
-def redirection_index():
-    return redirect(url_for(".index"))
 
 
 
 if __name__ == "__main__":
-    # execute only if run as a script
-    application.run()
+    # Execute only if run as a script
+    application.run(debug=True)
