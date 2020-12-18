@@ -15,17 +15,17 @@
   		</div>
   	</div>
     <div class="container col-md-6">
-      <form>
+      <form method="post">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control" id="username">
+          <input type="text" class="form-control" id="username" name="username">
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password">
+          <input type="password" class="form-control" id="password" name="password">
         </div>
-        <a href="{{ url_for('delivery_logger') }}" class="btn btn-primary" style="width:100%">Submit</a>
-</form>
+        <button type="submit" class="btn btn-primary" style="width:100%">Log in</button>
+      </form>
 </div>
   </body>
 </html>
