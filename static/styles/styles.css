@@ -10,12 +10,12 @@
   border-color:#C0006D
 }
 
-.btn-check:focus+.btn-primary,.btn-primary:focus{
+/* .btn-check:focus+.btn-primary,.btn-primary:focus{
   color:#fff;
   background-color:#D00076;
   border-color:#C0006D;
   box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
-}
+} */
 
 .btn-check:active+.btn-primary,.btn-check:checked+.btn-primary,.btn-primary.active,.btn-primary:active,.show>.btn-primary.dropdown-toggle{
   color:#fff;
@@ -23,14 +23,14 @@
   border-color:#B00064
 }
 
-.btn-check:active+.btn-primary:focus,.btn-check:checked+.btn-primary:focus,.btn-primary.active:focus,.btn-primary:active:focus,.show>.btn-primary.dropdown-toggle:focus {
+/* .btn-check:active+.btn-primary:focus,.btn-check:checked+.btn-primary:focus,.btn-primary.active:focus,.btn-primary:active:focus,.show>.btn-primary.dropdown-toggle:focus {
   box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
-}
+} */
 
-.btn-check:focus+.btn,.btn:focus {
+/* .btn-check:focus+.btn,.btn:focus {
   outline:0;
   box-shadow:0 0 0 .25rem rgba(223, 0, 126,.25)
-}
+} */
 
 .btn-outline-primary {
   color:#DF007E;
@@ -43,38 +43,34 @@
   border-color:#DF007E
 }
 
-.btn-check:focus+.btn-outline-primary,.btn-outline-primary:focus{
+/* .btn-check:focus+.btn-outline-primary,.btn-outline-primary:focus{
   box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
-}
+} */
 
 .btn-check:active+.btn-outline-primary,.btn-check:checked+.btn-outline-primary,.btn-outline-primary.active,.btn-outline-primary.dropdown-toggle.show,.btn-outline-primary:active{
   color:#fff;
   background-color:#DF007E;
   border-color:#DF007E
 }
-
+/*
 .btn-check:active+.btn-outline-primary:focus,.btn-check:checked+.btn-outline-primary:focus,.btn-outline-primary.active:focus,.btn-outline-primary.dropdown-toggle.show:focus,.btn-outline-primary:active:focus{
   box-shadow:0 0 0 .25rem rgba(223, 0, 126,.5)
-}
+} */
 
 .btn-outline-primary.disabled,.btn-outline-primary:disabled{
   color:#DF007E;
   background-color:transparent
 }
 
-.form-check-input:focus{
-  border-color:#FF33A7;
-  outline:0;
-  box-shadow:0 0 0 .25rem rgba(223, 0, 126,.25)
+.form-check-input:focus {
+  border-color: #FF33A7;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(223, 0, 126, 0.25);
 }
 
-.form-check-input:checked{
-  background-color:#DF007E;
-  border-color:#DF007E
-}
-
-.form-check-input:checked[type=checkbox]{
-  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e")
+.form-check-input:checked {
+  background-color: #DF007E;
+  border-color: #DF007E;
 }
 
 .form-control:focus {
@@ -118,4 +114,45 @@
 
 th, td {
   white-space: nowrap;
+}
+
+.form-switch {
+  padding-left: 2.5em;
+}
+.form-switch .form-check-input {
+  width: 2em;
+  margin-left: -2.5em;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+  background-position: left center;
+  border-radius: 2em;
+}
+.form-switch .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23FF85CA'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:checked {
+  background-position: right center;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+  color: #fff;
+  background-color: #D00076;
+  border-color: #C0006D;
+  box-shadow: 0 0 0 0.25rem rgba(223, 0, 126, 0.5);
+}
+
+.btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(223, 0, 126, 0.5);
+}
+
+.btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.25rem rgba(223, 0, 126, 0.5);
+}
+
+.btn-check:checked + .btn-outline-primary:focus, .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus {
+  box-shadow: 0 0 0 0.25rem rgba(223, 0, 126, 0.5);
+}
+
+.edit {
+  text-align: right;
 }
