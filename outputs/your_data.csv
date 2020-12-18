@@ -11,3 +11,5 @@
 9,2020-12-15T15:23,2020-12-15T16:00,1,large,inbound,Royal Mail,van,,,sales,,Office supplices,box
 10,2020-12-16T11:04,2020-12-16T11:04,1,medium,Both,Yodel,bicycle,99,,research,5,Office supplices,letter
 11,2020-12-16T11:25,2020-12-16T11:25,2,large,Outbound,Fed Ex,motorbike,ggg,personal_delivery,sales,5,Cleaning supplies,package
+12,2020-12-17T17:52,2020-12-17T17:52,,none,inbound,,lorry,,personal_delivery,,,,crate
+13,2020-12-17T17:54,2020-12-17T17:54,1,none,inbound,,lorry,,,,,,crate
