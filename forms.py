@@ -37,14 +37,14 @@ class SignupForm(FlaskForm):
         ]
     )
     confirm = PasswordField(
-        'Confirm Your Password',
+        'Confirm password',
         validators=[
             DataRequired(),
             EqualTo('password', message='Passwords must match.')
         ]
     )
 
-    submit = SubmitField('Register')
+    submit = SubmitField('Sign up')
 
 
 class LoginForm(FlaskForm):
