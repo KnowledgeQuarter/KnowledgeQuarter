@@ -20,12 +20,12 @@
 			<span class="title">Delivery Logger</span>
 		</div>
 		<div>
-			<a href="{{ url_for('settings') }}" style="text-decoration: none">
+			<a href="{{ url_for('main_bp.settings') }}" style="text-decoration: none">
 				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-sliders" viewBox="0 0 16 16">
   				<path fill-rule="evenodd" d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
 				</svg>
 			</a>
-			<a href="{{ url_for('index') }}" style="margin-left: 15px; text-decoration: none">
+			<a href="{{ url_for('main_bp.logout') }}" style="margin-left: 15px; text-decoration: none">
 				<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-door-open-fill" viewBox="0 0 16 16">
 		  		<path fill-rule="evenodd" d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2v13h1V2.5a.5.5 0 0 0-.5-.5H11zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
 				</svg>
@@ -33,7 +33,7 @@
 		</div>
 	</div>
 	<div class="container">
-		<form method="post" action="{{url_for('form')}}" id="form">
+		<form method="post" action="{{url_for('main_bp.form')}}" id="form">
 			<div class="row gx-5 box">
 				<div class="col-lg">
 					<div class="row">
