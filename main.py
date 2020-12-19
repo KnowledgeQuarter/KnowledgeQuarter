@@ -1,39 +1,45 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Dec 11 17:09:11 2020
+Created on Fri Dec 18 19:38:14 2020
 
 @author: Kirsch
 """
 
-from flask import Flask, render_template, g, redirect, url_for, request, send_file
+from flask import Blueprint, redirect, render_template, flash, request, session, url_for, send_file
+from flask_login import login_required, logout_user, current_user, login_user
+from forms import LoginForm, SignupForm
 import pymysql
 import pandas as pd
 
-# Create the web application
-application = Flask(__name__)
 
-# Initialize the web app's first page
-@application.route("/")
-def index():
-    return render_template("index.html")
+# Blueprint Configuration
+main_bp = Blueprint(
+    'main_bp', __name__,
+    template_folder='templates',
+    static_folder='static'
+)
+
+
 
 # Load the template for the delivery logger
-@application.route("/delivery_logger")
+@main_bp.route("/")
+@login_required
 def delivery_logger():
+    
     return render_template("delivery_logger.html")
 
 # Load the template for the settings page
-@application.route("/settings")
+@main_bp.route("/settings")
 def settings():
     return render_template("settings.html")
 
 # Load the template for the admin page
-@application.route("/admin")
+@main_bp.route("/admin")
 def admin():
     return render_template("admin.html")
 
 # Load the template for the settings page
-@application.route("/settings", methods=['GET', 'POST'])
+@main_bp.route("/settings", methods=['GET', 'POST'])
 def get_csv():
 
     db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
@@ -67,7 +73,7 @@ def get_csv():
 
 
 # Function to fetch the info from the form and add it to the database
-@application.route("/delivery_logger", methods=['GET', 'POST'])
+@main_bp.route("/", methods=['GET', 'POST'])
 def form():
 
     # Get the data from the form
@@ -96,20 +102,27 @@ def form():
     db.close()
 
     # Redirect to the same html page
-    return redirect(url_for("form"))
+    return redirect(url_for("main_bp.form"))
 
 
-@application.route("/", methods=['GET', 'POST'])
+@main_bp.route("/logout")
+@login_required
+def logout():
+    """User log-out logic."""
+    logout_user()
+    return redirect(url_for('auth_bp.login'))
+
+@main_bp.route("/", methods=['GET', 'POST'])
 def login():
     # Get the data from the form
     if request.method == 'POST':
         if request.form['username'] == 'KQ':
-            return redirect(url_for("admin"))
+            return redirect(url_for("main_bp.admin"))
         else:
-            return redirect(url_for("delivery_logger"))
+            return redirect(url_for("main_bp.delivery_logger"))
 
 
-@application.route("/admin", methods=['GET', 'POST'])
+@main_bp.route("/admin", methods=['GET', 'POST'])
 def get_csv_kq():
 
     db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
@@ -141,6 +154,3 @@ def get_csv_kq():
         as_attachment=True)
 
 
-if __name__ == "__main__":
-    # Execute only if run as a script
-    application.run()
