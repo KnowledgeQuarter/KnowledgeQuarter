@@ -36,7 +36,7 @@ def signup():
             db.session.add(user)
             db.session.commit()  # Create new user
             login_user(user)  # Log in as newly created user
-            return redirect(url_for('main_bp.index'))
+            return redirect(url_for('main_bp.delivery_logger'))
         flash('A user already exists with that email address.')
     return render_template(
         'signup.html', form=form)
