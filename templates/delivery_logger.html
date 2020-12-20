@@ -17,7 +17,7 @@
 	<div class="container-fluid bg-primary mb-sm-4 d-flex align-items-center justify-content-between">
 		<div>
 			<img src="{{url_for('static', filename='assets/kq-logo.png')}}" height="60">
-			<span class="title">Delivery Logger</span>
+			<span class="title">Welcome back, {{current_user.name}}</span>
 		</div>
 		<div>
 			<a href="{{ url_for('main_bp.settings') }}" style="text-decoration: none">

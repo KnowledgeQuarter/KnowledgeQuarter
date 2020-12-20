@@ -35,7 +35,7 @@ class User(UserMixin, db.Model):
         unique=False,
         nullable=False
 	)
-    
+
     created_on = db.Column(
         db.DateTime,
         index=False,
@@ -61,4 +61,4 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return '<User {}>'.format(self.name)
