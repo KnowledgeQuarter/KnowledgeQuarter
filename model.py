@@ -11,10 +11,11 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class User(UserMixin, db.Model):
+class User(UserMixin, db.Model, ):
     """User account model."""
 
     __tablename__ = 'flasklogin-users'
+    
     id = db.Column(
         db.Integer,
         primary_key=True
@@ -62,3 +63,53 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.name)
+
+    
+    
+    
+
+class Categories(db.Model):
+    
+    
+    __tablename__ = 'visible-categories'
+
+    
+    email = db.Column(
+        db.String(40),
+        unique=True,
+        primary_key = True
+        
+    )
+     
+    time_in = db.Column(db.Boolean, unique=False, default=True)
+    
+    time_out = db.Column(db.Boolean, unique=False, default=True)
+    
+    delivery_location = db.Column(db.Boolean, unique=False, default=True)
+    
+    delay = db.Column(db.Boolean, unique=False, default=True)
+    
+    inbound_outbound = db.Column(db.Boolean, unique=False, default=True)
+    
+    carrier_name = db.Column(db.Boolean, unique=False, default=True)
+    
+    vehicle_type = db.Column(db.Boolean, unique=False, default=True)
+    
+    registration_number = db.Column(db.Boolean, unique=False, default=True)
+    
+    personal_delivery = db.Column(db.Boolean, unique=False, default=True)
+    
+    department = db.Column(db.Boolean, unique=False, default=True)
+    
+    number_of_packages = db.Column(db.Boolean, unique=False, default=True)
+    
+    type_of_goods = db.Column(db.Boolean, unique=False, default=True)
+    
+    size_of_goods = db.Column(db.Boolean, unique=False, default=True)
+    
+    
+    def __repr__(self):
+        return '<User {}>'.format(self.time_in)
+    
+    
+    

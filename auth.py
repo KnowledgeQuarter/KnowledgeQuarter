@@ -9,7 +9,7 @@ Created on Fri Dec 18 19:24:27 2020
 from flask import Blueprint, redirect, render_template, flash, request, url_for
 from flask_login import current_user, login_user
 from forms import LoginForm, SignupForm
-from model import db, User
+from model import db, User, Categories
 from __init__ import login_manager
 
 
@@ -32,9 +32,18 @@ def signup():
                 name=form.name.data,
                 email=form.email.data,
             )
+            
+            prefs = Categories(
+                email = form.email.data)
+            
             user.set_password(form.password.data)
             db.session.add(user)
-            db.session.commit()  # Create new user
+            db.session.add(prefs)
+            db.session.commit()
+            ooo = Categories.query.first()
+            print(ooo)
+            ooo.time_in = False
+            print(ooo)
             login_user(user)  # Log in as newly created user
             return redirect(url_for('main_bp.delivery_logger'))
         flash('A user already exists with that email address.')
