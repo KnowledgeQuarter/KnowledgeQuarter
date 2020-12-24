@@ -44,6 +44,7 @@ def signup():
             print(ooo)
             ooo.time_in = False
             print(ooo)
+
             login_user(user)  # Log in as newly created user
             return redirect(url_for('main_bp.delivery_logger'))
         flash('A user already exists with that email address.')

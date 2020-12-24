@@ -109,7 +109,7 @@ class Categories(db.Model):
     
     
     def __repr__(self):
-        return '<User {}>'.format(self.time_in)
+        return '{}'.format(self.email)
     
     
     
