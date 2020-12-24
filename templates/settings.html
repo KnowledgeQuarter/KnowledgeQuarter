@@ -283,60 +283,60 @@
           <p style="color: #6c757d">Use the controls below to customise the input fields in your delivery logger tool.</p>
           <div class="mb-5">
                 <h5>Input fields</h5>
+		<form method="post" action="{{url_for('main_bp.which_visible')}}" id="form">
                 <div class="row">
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="delivery_location" value="delivery_location" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields1" id="delivery_location" value="delivery_location" checked>
                       <label class="form-check-label" for="delivery_location">Delivery location</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="delay" value="delay" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields2" id="delay" value="delay" checked>
                       <label class="form-check-label" for="delay">Delay within vicinity of drop-off</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="bound" value="bound" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields3" id="inbound_outbound" value="inbound_outbound" checked>
                       <label class="form-check-label" for="bound">Inbound or outbound</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="carrier" value="carrier" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields4" id="carrier_name" value="carrier_name" checked>
                       <label class="form-check-label" for="carrier">Carrier name</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="vehicle_type" value="vehicle_type" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields5" id="vehicle_type" value="vehicle_type" checked>
                       <label class="form-check-label" for="vehicle_type">Vehicle type</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="vehicle_registration_number" value="vehicle_registration_number" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields6" id="registration_number" value="registration_number" checked>
                       <label class="form-check-label" for="vehicle_registration_number">Vehicle registration number</label>
                     </div>
                   </div>
                   <div class="col">
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="personal_delivery" value="personal_delivery" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields7" id="personal_delivery" value="personal_delivery" checked>
                       <label class="form-check-label" for="personal_delivery">Personal delivery</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="department" value="department" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields8" id="department" value="department" checked>
                       <label class="form-check-label" for="department">Department deliverying to</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="vehicle_type" value="vehicle_type" checked>
-                      <label class="form-check-label" for="vehicle_type">Vehicle type</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="number_packages" value="number_packages" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields10" id="number_of_packages" value="number_of_packages" checked>
                       <label class="form-check-label" for="number_packages">Number of packages</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="type" value="type" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields11" id="type_of_goods" value="type_of_goods" checked>
                       <label class="form-check-label" for="type">Type of goods</label>
                     </div>
                     <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields" id="size" value="size" checked>
+                      <input class="form-check-input" type="checkbox" name="favourite_fields12" id="size_of_goods" value="size_of_goods" checked>
                       <label class="form-check-label" for="size">Size of goods</label>
                     </div>
                   </div>
+		  <input type="submit" value="Submit">
                 </div>
+		</form>
+		
               </div>
           <div class="mb-5">
                 <h4>Delivery locations</h4>

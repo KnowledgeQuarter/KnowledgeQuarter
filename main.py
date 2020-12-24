@@ -8,6 +8,7 @@ Created on Fri Dec 18 19:38:14 2020
 from flask import Blueprint, redirect, render_template, flash, request, session, url_for, send_file
 from flask_login import login_required, logout_user, current_user, login_user
 from forms import LoginForm, SignupForm
+from model import db, User, Categories
 import pymysql
 import pandas as pd
 
@@ -31,12 +32,65 @@ def delivery_logger():
 # Load the template for the settings page
 @main_bp.route("/settings")
 def settings():
+    
     return render_template("settings.html")
 
 # Load the template for the admin page
 @main_bp.route("/admin")
 def admin():
     return render_template("admin.html")
+
+
+
+
+
+@main_bp.route("/settings", methods=['GET', 'POST'])
+def which_visible():
+    
+    
+    # Get the data from the form
+    data = request.form
+    data = data.to_dict()
+    
+    # Get the logging information
+    value = list(data.values())
+    
+    cat = {'delivery_location' : True, 'delay': True, 'inbound_outbound': True, 'carrier_name' : True,'vehicle_type': True, 'registration_number': True, 
+    'personal_delivery': True, 'department': True, 'number_of_packages': True, 'type_of_goods': True, 'size_of_goods': True}
+    
+    key = list(cat.keys())
+    
+    for i in key: 
+        if i not in value: 
+            cat[i] = False
+            
+            
+    print(cat)
+    
+    user_pref = Categories.query.filter_by(email=current_user.email).first()
+
+    print(user_pref.size_of_goods)
+    
+    user_pref.delivery_location = cat["delivery_location"]
+    user_pref.delay = cat["delay"]
+    user_pref.inbound_outbound = cat["inbound_outbound"]
+    user_pref.carrier_name = cat["carrier_name"]
+    user_pref.vehicle_type = cat["vehicle_type"]
+    user_pref.registration_number = cat["registration_number"]
+    user_pref.personal_delivery = cat["personal_delivery"]
+    user_pref.department = cat["department"]
+    user_pref.number_of_packages = cat["number_of_packages"]
+    user_pref.type_of_goods = cat["type_of_goods"]
+    user_pref.size_of_goods = cat["size_of_goods"]
+        
+    print(user_pref.size_of_goods)
+
+    
+    db.session.commit()
+    
+    return redirect(url_for("main_bp.form"))
+
+
 
 # Load the template for the settings page
 @main_bp.route("/settings", methods=['GET', 'POST'])
