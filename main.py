@@ -26,14 +26,14 @@ main_bp = Blueprint(
 @main_bp.route("/")
 @login_required
 def delivery_logger():
-    
-    return render_template("delivery_logger.html")
+    preferences = Categories.query.filter_by(email=current_user.email).first()
+    return render_template("delivery_logger.html", preferences=preferences)
 
 # Load the template for the settings page
 @main_bp.route("/settings")
 def settings():
-    
-    return render_template("settings.html")
+    preferences = Categories.query.filter_by(email=current_user.email).first()
+    return render_template("settings.html", preferences=preferences)
 
 # Load the template for the admin page
 @main_bp.route("/admin")
@@ -46,31 +46,31 @@ def admin():
 
 @main_bp.route("/settings", methods=['GET', 'POST'])
 def which_visible():
-    
-    
+
+
     # Get the data from the form
     data = request.form
     data = data.to_dict()
-    
+
     # Get the logging information
     value = list(data.values())
-    
-    cat = {'delivery_location' : True, 'delay': True, 'inbound_outbound': True, 'carrier_name' : True,'vehicle_type': True, 'registration_number': True, 
+
+    cat = {'delivery_location' : True, 'delay': True, 'inbound_outbound': True, 'carrier_name' : True,'vehicle_type': True, 'registration_number': True,
     'personal_delivery': True, 'department': True, 'number_of_packages': True, 'type_of_goods': True, 'size_of_goods': True}
-    
+
     key = list(cat.keys())
-    
-    for i in key: 
-        if i not in value: 
+
+    for i in key:
+        if i not in value:
             cat[i] = False
-            
-            
+
+
     print(cat)
-    
+
     user_pref = Categories.query.filter_by(email=current_user.email).first()
 
     print(user_pref.size_of_goods)
-    
+
     user_pref.delivery_location = cat["delivery_location"]
     user_pref.delay = cat["delay"]
     user_pref.inbound_outbound = cat["inbound_outbound"]
@@ -82,12 +82,12 @@ def which_visible():
     user_pref.number_of_packages = cat["number_of_packages"]
     user_pref.type_of_goods = cat["type_of_goods"]
     user_pref.size_of_goods = cat["size_of_goods"]
-        
+
     print(user_pref.size_of_goods)
 
-    
+
     db.session.commit()
-    
+
     return redirect(url_for("main_bp.form"))
 
 
@@ -206,5 +206,3 @@ def get_csv_kq():
         mimetype='text/csv',
         attachment_filename='your_data.csv',
         as_attachment=True)
-
-

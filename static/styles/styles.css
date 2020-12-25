@@ -156,3 +156,7 @@ th, td {
 .edit {
   text-align: right;
 }
+
+.hidden {
+  display: none
+}

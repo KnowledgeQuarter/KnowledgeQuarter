@@ -52,7 +52,7 @@
 							</div>
 		  			</div>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.delivery_location %}hidden{% endif %}">
 						<label for="delivery_location" class="form-label">Delivery location</label>
 						<select class="form-select" name="delivery_location" id="delivery_location">
 							<option selected disabled>Select a location</option>
@@ -63,7 +63,7 @@
 							<option value="warren-street-2">Warren Street 2</option>
 						</select>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.delay %}hidden{% endif %}">
 						<label for="delay" class="form-label">Delay within vicinity of drop-off</label>
 						<br>
 						<input type="radio" class="btn-check" name="delay" id="none" value="none" checked>
@@ -75,7 +75,7 @@
 						<input type="radio" class="btn-check" name="delay" id="large" value="large">
 						<label class="btn btn-outline-primary" for="large">10+ minutes</label>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.inbound_outbound %}hidden{% endif %}">
 						<label for="bound" class="form-label">Inbound or outbound</label>
 						<br>
 						<input type="radio" class="btn-check" name="bound" id="inbound" value = "inbound" checked>
@@ -85,7 +85,7 @@
 						<input type="radio" class="btn-check" name="bound" id="both" value = "Both">
 						<label class="btn btn-outline-primary" for="both">Both</label>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.carrier_name %}hidden{% endif %}">
 						<label for="carrier" class="form-label">Carrier name</label>
 						<input class="form-control" list="carrierOptions" name="carrier" id="carrier" placeholder="Type to search...">
 						<datalist id="carrierOptions">
@@ -96,7 +96,7 @@
   						<option value="Royal Mail">
 						</datalist>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.vehicle_type %}hidden{% endif %}">
 						<label for="bound" class="form-label">Vehicle type</label>
 						<br>
 						<input type="radio" class="btn-check" name="vehicle_type" id="lorry" value="lorry" checked>
@@ -114,15 +114,15 @@
 					</div>
 				</div>
 				<div class="col-lg">
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.registration_number %}hidden{% endif %}">
 						<label for="vehicle_registration_number" class="form-label">Vehicle registration number</label>
 				  	<input type="text" id="vehicle_registration_number" class="form-control" name="vehicle_registration_number">
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.personal_delivery %}hidden{% endif %}">
 						<input class="form-check-input" type="checkbox" id="personal_delivery" name="personal_delivery" value="personal_delivery">
 		  			<label class="form-check-label" for="personal_delivery">Personal delivery</label>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.department %}hidden{% endif %}">
 						<label for="department" class="form-label">Department delivering to</label>
 						<select class="form-select" name="department" id="department">
 							<option selected disabled>Select a department</option>
@@ -134,11 +134,11 @@
 							<option value="libraries">UCL Libraries</option>
 						</select>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.number_of_packages %}hidden{% endif %}">
 						<label for="number_packages" class="form-label">Number of packages</label>
 						<input type="number" id="number_packages" min="0" class="form-control" name="number_packages">
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.type_of_goods %}hidden{% endif %}">
 						<label for="type" class="form-label">Type of goods</label>
 						<input class="form-control" list="typeOptions" name="type" id="type" placeholder="Type to search...">
 						<datalist id="typeOptions">
@@ -150,7 +150,7 @@
   						<option value="Medical supplies">
 						</datalist>
 					</div>
-					<div class="mb-3">
+					<div class="mb-3 {% if not preferences.size_of_goods %}hidden{% endif %}">
 						<label for="size" class="form-label">Size of goods</label>
 						<br>
 						<input type="radio" class="btn-check" name="size" id="pallet" value="pallet" checked>

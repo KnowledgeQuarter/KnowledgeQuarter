@@ -282,62 +282,61 @@
           <h1>Customise your logger tool</h1>
           <p style="color: #6c757d">Use the controls below to customise the input fields in your delivery logger tool.</p>
           <div class="mb-5">
-                <h5>Input fields</h5>
-		<form method="post" action="{{url_for('main_bp.which_visible')}}" id="form">
-                <div class="row">
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields1" id="delivery_location" value="delivery_location" checked>
-                      <label class="form-check-label" for="delivery_location">Delivery location</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields2" id="delay" value="delay" checked>
-                      <label class="form-check-label" for="delay">Delay within vicinity of drop-off</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields3" id="inbound_outbound" value="inbound_outbound" checked>
-                      <label class="form-check-label" for="bound">Inbound or outbound</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields4" id="carrier_name" value="carrier_name" checked>
-                      <label class="form-check-label" for="carrier">Carrier name</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields5" id="vehicle_type" value="vehicle_type" checked>
-                      <label class="form-check-label" for="vehicle_type">Vehicle type</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields6" id="registration_number" value="registration_number" checked>
-                      <label class="form-check-label" for="vehicle_registration_number">Vehicle registration number</label>
-                    </div>
+            <h5>Input fields</h5>
+		        <form method="post" action="{{url_for('main_bp.which_visible')}}" id="form">
+              <div class="row mb-3">
+                <div class="col">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields1" id="delivery_location" value="delivery_location" {% if preferences.delivery_location %}checked{% endif %}>
+                    <label class="form-check-label" for="delivery_location">Delivery location</label>
                   </div>
-                  <div class="col">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields7" id="personal_delivery" value="personal_delivery" checked>
-                      <label class="form-check-label" for="personal_delivery">Personal delivery</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields8" id="department" value="department" checked>
-                      <label class="form-check-label" for="department">Department deliverying to</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields10" id="number_of_packages" value="number_of_packages" checked>
-                      <label class="form-check-label" for="number_packages">Number of packages</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields11" id="type_of_goods" value="type_of_goods" checked>
-                      <label class="form-check-label" for="type">Type of goods</label>
-                    </div>
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="favourite_fields12" id="size_of_goods" value="size_of_goods" checked>
-                      <label class="form-check-label" for="size">Size of goods</label>
-                    </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields2" id="delay" value="delay" {% if preferences.delay %}checked{% endif %}>
+                    <label class="form-check-label" for="delay">Delay within vicinity of drop-off</label>
                   </div>
-		  <input type="submit" value="Submit">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields3" id="inbound_outbound" value="inbound_outbound" {% if preferences.inbound_outbound %}checked{% endif %}>
+                    <label class="form-check-label" for="inbound_outbound">Inbound or outbound</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields4" id="carrier_name" value="carrier_name" {% if preferences.carrier_name %}checked{% endif %}>
+                    <label class="form-check-label" for="carrier_name">Carrier name</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields5" id="vehicle_type" value="vehicle_type" {% if preferences.vehicle_type %}checked{% endif %}>
+                    <label class="form-check-label" for="vehicle_type">Vehicle type</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields6" id="registration_number" value="registration_number" {% if preferences.registration_number %}checked{% endif %}>
+                    <label class="form-check-label" for="registration_number">Vehicle registration number</label>
+                  </div>
                 </div>
-		</form>
-		
+                <div class="col">
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields7" id="personal_delivery" value="personal_delivery" {% if preferences.personal_delivery %}checked{% endif %}>
+                    <label class="form-check-label" for="personal_delivery">Personal delivery</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields8" id="department" value="department" {% if preferences.department %}checked{% endif %}>
+                    <label class="form-check-label" for="department">Department deliverying to</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields10" id="number_of_packages" value="number_of_packages" {% if preferences.number_of_packages %}checked{% endif %}>
+                    <label class="form-check-label" for="number_of_packages">Number of packages</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields11" id="type_of_goods" value="type_of_goods" {% if preferences.type_of_goods %}checked{% endif %}>
+                    <label class="form-check-label" for="type_of_goods">Type of goods</label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" name="favourite_fields12" id="size_of_goods" value="size_of_goods" {% if preferences.size_of_goods %}checked{% endif %}>
+                    <label class="form-check-label" for="size_of_goods">Size of goods</label>
+                  </div>
+                </div>
               </div>
+              <input type="submit" value="Save" class="btn btn-primary" style="width:100%">
+		        </form>
+		      </div>
           <div class="mb-5">
                 <h4>Delivery locations</h4>
                 <table class="table table-striped table-hover align-middle">
