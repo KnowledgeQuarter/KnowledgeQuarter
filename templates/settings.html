@@ -256,7 +256,7 @@
           <div class="mb-3">
             <p style="color: #6c757d">Use the controls below to selectively download and review your data.</p>
           </div>
-          <form class="row row-cols-md-auto g-3 align-items-center" method="post">
+          <form class="row row-cols-md-auto g-3 align-items-center" method="post" action="{{url_for('main_bp.get_csv')}}">
             <div class="col-12">
               <label class="visually-hidden" for="from_date">From</label>
               <div class="input-group">
