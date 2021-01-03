@@ -5,11 +5,12 @@ Created on Fri Dec 18 19:38:14 2020
 @author: Kirsch
 """
 
-from flask import Blueprint, redirect, render_template, flash, request, session, url_for, send_file
+from flask import Blueprint, redirect, render_template, request, url_for, send_file
 from flask_login import login_required, logout_user, current_user, login_user
 from forms import LoginForm, SignupForm
-from model import db, User, Categories
+from model import db, User, Categories, Carrier1
 import pymysql
+import numpy as np
 import pandas as pd
 
 
@@ -50,6 +51,7 @@ def which_visible():
     
     # Get the data from the form
     data = request.form
+    print(data)
     data = data.to_dict()
     
     # Get the logging information
@@ -207,4 +209,23 @@ def get_csv_kq():
         attachment_filename='your_data.csv',
         as_attachment=True)
 
+#@main_bp.route("/test", methods=['GET', 'POST'])
+#def test():     
+    
+        #result = Carrier1.query.with_entities(Carrier1.email, Carrier1.carrier).all()
 
+        #print(result)
+            
+        #carrier = Carrier1(
+         #               email = str(np.random.randint(0,10)),
+          #              carrier = str(np.random.randint(0,10))
+        #            )
+        
+        #print("oso")
+        #db.session.add(carrier)
+        #print("carrement")
+        #db.session.commit()
+        
+        #s = Carrier1.query.with_entities(Carrier1.email, Carrier1.carrier).filter_by(email = 4).all()
+        #print(s)
+        #return render_template("test.html")

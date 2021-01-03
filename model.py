@@ -113,3 +113,60 @@ class Categories(db.Model):
     
     
     
+class Carrier1(db.Model):
+    
+    __tablename__ = 'carriers1'
+
+    
+    id = db.Column(db.Integer, primary_key=True)
+
+
+    email = db.Column(
+        db.String(40),
+        
+    )
+    
+    carrier = db.Column(
+        db.String(40),
+        
+    )
+     
+    
+    
+    def __repr__(self):
+        return '{}'.format(self.email)
+    
+     
+    
+class Goods1(db.Model):
+    
+    
+    __tablename__ = 'goods'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+
+    email = db.Column(
+        db.String(40),
+        unique=True,
+        primary_key = True
+        
+    )
+    
+    goods = db.Column(
+        db.String(40),
+        unique=True
+        
+    )
+     
+    
+    
+    def __repr__(self):
+        return '{}'.format(self.email)
+    
+    
+    
+
+
+    
+    
