@@ -15,12 +15,12 @@ import pandas as pd
 
 # Blueprint Configuration
 main_bp = Blueprint(
-    'main_bp', __name__,
+    'main_bp', "application",
     template_folder='templates',
     static_folder='static'
 )
 
-
+print(__name__)
 
 # Load the template for the delivery logger
 @main_bp.route("/")
@@ -43,7 +43,7 @@ def admin():
 
 
 
-
+#Modify the preference database to display the preferences for information options
 @main_bp.route("/settings", methods=['GET', 'POST'])
 def which_visible():
 
@@ -55,22 +55,25 @@ def which_visible():
     # Get the logging information
     value = list(data.values())
 
+
+    #Make all entries visible by default
     cat = {'delivery_location' : True, 'delay': True, 'inbound_outbound': True, 'carrier_name' : True,'vehicle_type': True, 'registration_number': True,
     'personal_delivery': True, 'department': True, 'number_of_packages': True, 'type_of_goods': True, 'size_of_goods': True}
 
     key = list(cat.keys())
 
+
+    #Check which entries are inputted from the user form and set the others to false
     for i in key:
         if i not in value:
             cat[i] = False
 
 
-    print(cat)
-
+    #Recuperate the entry of this user in the database
     user_pref = Categories.query.filter_by(email=current_user.email).first()
 
-    print(user_pref.size_of_goods)
 
+    #Update the boolean value of each entry 
     user_pref.delivery_location = cat["delivery_location"]
     user_pref.delay = cat["delay"]
     user_pref.inbound_outbound = cat["inbound_outbound"]
@@ -83,21 +86,22 @@ def which_visible():
     user_pref.type_of_goods = cat["type_of_goods"]
     user_pref.size_of_goods = cat["size_of_goods"]
 
-    print(user_pref.size_of_goods)
 
-
+    #Save the changes to the db
     db.session.commit()
 
     return redirect(url_for("main_bp.form"))
 
 
 
-# Load the template for the settings page
+# Load the data from the RDS database
 @main_bp.route("/settings", methods=['GET', 'POST'])
 def get_csv():
 
-    db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
-    cursor = db.cursor()
+    #Fetch the data from AWS    
+
+    rds_db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
+    cursor = rds_db.cursor()
     cursor.connection.commit()
     sql = '''use kq_contracts_and_logger'''
     cursor.execute(sql)
@@ -105,6 +109,9 @@ def get_csv():
     sql = '''select * from delivery_logger'''
     cursor.execute(sql)
     data = cursor.fetchall()
+
+
+    #Convert the data to a dataframe
 
     df = pd.DataFrame(list(data), columns = ['time_in','time_out',
                                           'delivery_location', 'delay', 'bound',
@@ -118,7 +125,8 @@ def get_csv():
 
     df.to_csv('outputs/your_data.csv', sep = ',' )
 
-
+    rds_db.close()
+    
     return send_file('outputs/your_data.csv',
         mimetype='text/csv',
         attachment_filename='your_data.csv',
@@ -142,8 +150,8 @@ def form():
     value = str(list(data.values())).replace("[","(").replace("]",")")
     print(value)
 
-    db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
-    cursor = db.cursor()
+    rds_db = pymysql.connect('knowledge-quarter-db.cnq2qddxvg55.us-east-2.rds.amazonaws.com', 'admin', 'Kn0w!3dg$_Qu&r3r', port = 3306)
+    cursor = rds_db.cursor()
     cursor.connection.commit()
     sql = '''use kq_contracts_and_logger'''
     cursor.execute(sql)
@@ -152,13 +160,13 @@ def form():
     sql = "INSERT INTO delivery_logger " + key + " VALUES " + value
 
     cursor.execute(sql)
-    db.commit()
-    db.close()
+    rds_db.commit()
+    rds_db.close()
 
     # Redirect to the same html page
     return redirect(url_for("main_bp.form"))
 
-
+#Logout 
 @main_bp.route("/logout")
 @login_required
 def logout():
@@ -166,16 +174,9 @@ def logout():
     logout_user()
     return redirect(url_for('auth_bp.login'))
 
-@main_bp.route("/", methods=['GET', 'POST'])
-def login():
-    # Get the data from the form
-    if request.method == 'POST':
-        if request.form['username'] == 'KQ':
-            return redirect(url_for("main_bp.admin"))
-        else:
-            return redirect(url_for("main_bp.delivery_logger"))
 
 
+#Retrieve the info from the admin page
 @main_bp.route("/admin", methods=['GET', 'POST'])
 def get_csv_kq():
 
