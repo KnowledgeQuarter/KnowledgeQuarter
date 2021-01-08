@@ -16,9 +16,9 @@ from flask_login import LoginManager
 db = SQLAlchemy()
 login_manager = LoginManager()
 
-
+#Init and configure the web application
 def create_app():
-    application = Flask(__name__)
+    application = Flask("application")
 
     application.config['SECRET_KEY'] = 'Kn0w!3dg$_Qu&r3r'
     application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'

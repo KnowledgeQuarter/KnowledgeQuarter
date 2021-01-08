@@ -14,7 +14,7 @@ from wtforms.validators import (
     Length,
 )
 
-
+#Definition of a signup form class to link the html frontend form and the backend database 
 class SignupForm(FlaskForm):
     """User Sign-up Form."""
     name = StringField(
@@ -46,7 +46,7 @@ class SignupForm(FlaskForm):
 
     submit = SubmitField('Sign up')
 
-
+#Definition of a login form class to link the html frontend form and the backend database 
 class LoginForm(FlaskForm):
     """User Log-in Form."""
     email = StringField(

@@ -15,27 +15,35 @@ from __init__ import login_manager
 
 # Blueprint Configuration
 auth_bp = Blueprint(
-    'auth_bp', __name__,
+    'auth_bp', "application",
     template_folder='templates',
     static_folder='static'
 )
 
 
+#Functionalities of the signup page
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
 
+    #Verify if the signup information are new and if so create a new entry in 
+    #the SQLAlchemy databases of accounts and preferences
     form = SignupForm()
     if form.validate_on_submit():
         existing_user = User.query.filter_by(email=form.email.data).first()
         if existing_user is None:
+            
+            #Initiate a new user 
             user = User(
                 name=form.name.data,
                 email=form.email.data,
             )
             
+            #Initiate a new preference row 
             prefs = Categories(
                 email = form.email.data)
             
+            
+            #Update the users and preferences dataabses 
             user.set_password(form.password.data)
             db.session.add(user)
             db.session.add(prefs)
@@ -51,14 +59,12 @@ def signup():
     return render_template(
         'signup.html', form=form)
 
+
+#Login logic
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    """
-    Log-in page for registered users.
-
-    GET requests serve Log-in page.
-    POST requests validate and redirect user to dashboard.
-    """
+    
+    
     # Bypass if user is logged in
     if current_user.is_authenticated:
         return redirect(url_for('main_bp.delivery_logger'))
@@ -67,6 +73,8 @@ def login():
     # Validate login attempt
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
+        
+        #Check if user details are correct
         if user and user.check_password(password=form.password.data):
             login_user(user)
             next_page = request.args.get('next')
@@ -76,6 +84,10 @@ def login():
     return render_template(
         'login.html', form = form )
     
+
+
+
+#Necessary login manager logics
 
 @login_manager.user_loader
 def load_user(user_id):
